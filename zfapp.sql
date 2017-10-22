@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 23 Paź 2017, 00:25
+-- Czas generowania: 23 Paź 2017, 01:31
 -- Wersja serwera: 10.1.25-MariaDB
 -- Wersja PHP: 7.1.7
 
@@ -42,7 +42,8 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `parent_id`, `name`) VALUES
-(1, 0, 'test');
+(1, NULL, 'test_group'),
+(2, 1, 'test_child_group');
 
 -- --------------------------------------------------------
 
@@ -53,10 +54,10 @@ INSERT INTO `groups` (`id`, `parent_id`, `name`) VALUES
 DROP TABLE IF EXISTS `materials`;
 CREATE TABLE `materials` (
   `id` int(11) NOT NULL,
-  `code` varchar(255) NOT NULL,
+  `code` varchar(10) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `group_id` int(11) NOT NULL,
-  `unit_id` int(11) NOT NULL
+  `group_id` int(11) DEFAULT NULL,
+  `unit_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -64,7 +65,7 @@ CREATE TABLE `materials` (
 --
 
 INSERT INTO `materials` (`id`, `code`, `name`, `group_id`, `unit_id`) VALUES
-(1, 'test', 'test', 1, 1);
+(1, 'test_code', 'test_material', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -76,7 +77,7 @@ DROP TABLE IF EXISTS `units`;
 CREATE TABLE `units` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `shortname` varchar(255) NOT NULL
+  `shortname` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -84,7 +85,7 @@ CREATE TABLE `units` (
 --
 
 INSERT INTO `units` (`id`, `name`, `shortname`) VALUES
-(1, 'test', 'test');
+(1, 'test_unit fullname\'', 'test_unitshort');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -94,13 +95,16 @@ INSERT INTO `units` (`id`, `name`, `shortname`) VALUES
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parent_id` (`parent_id`);
 
 --
 -- Indexes for table `materials`
 --
 ALTER TABLE `materials`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `materials_unit_id_index` (`unit_id`) USING BTREE,
+  ADD KEY `materials_group_id_index` (`group_id`) USING BTREE;
 
 --
 -- Indexes for table `units`
@@ -116,7 +120,7 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT dla tabeli `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT dla tabeli `materials`
 --
@@ -126,7 +130,24 @@ ALTER TABLE `materials`
 -- AUTO_INCREMENT dla tabeli `units`
 --
 ALTER TABLE `units`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- Ograniczenia dla zrzutów tabel
+--
+
+--
+-- Ograniczenia dla tabeli `groups`
+--
+ALTER TABLE `groups`
+  ADD CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `groups` (`id`) ON DELETE SET NULL;
+
+--
+-- Ograniczenia dla tabeli `materials`
+--
+ALTER TABLE `materials`
+  ADD CONSTRAINT `materials_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `materials_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
