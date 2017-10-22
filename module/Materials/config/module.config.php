@@ -5,7 +5,7 @@ use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'controllers' => [
-        'factories' => [     
+        'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
         ],
     ],
@@ -31,7 +31,7 @@ return [
     ],
     'view_manager' => [
         'template_path_stack' => [
-            'ZendSkeletonModule' => __DIR__ . '/../view',
+            'Materials' => __DIR__ . '/../view',
         ],
     ],
 ];
