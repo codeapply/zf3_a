@@ -70,7 +70,7 @@ return [
             'display_item' => [
               'type' => 'Segment',
               'options' => [
-                'route' => '/materials/:itemSlug',
+                'route' => '/materials/:itemName',
                 'contraints' => [
                   'itemSlug'      => '[a-zA-Z0-9-]+',
                 ],
@@ -83,8 +83,9 @@ return [
         ],
     ],         
     'controllers' => [
-        'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+        'factories' => [                                        
+            'Materials\Controller\IndexController' => 'Materials\Controller\IndexControllerFactory',  
+            'Materials\Controller\MaterialsItem' => 'Materials\Controller\MaterialsItemControllerFactory'
         ],
     ],
     'view_manager' => [
