@@ -10,8 +10,24 @@
  *
  * This should be an array of module namespaces used in the application.
  */
-return [
+return [          
+    'Zend\InputFilter',
+    'Zend\Filter',
+    'Zend\Hydrator',
+    'Zend\Serializer',
+    'Zend\Paginator',
+    'Zend\ServiceManager\Di',
+    'Zend\Mvc\Plugin\Prg',
+    'Zend\Mvc\Plugin\FlashMessenger',
+    'Zend\Mvc\I18n',
+    'Zend\Mvc\Console',
+    'Zend\Log',
+    'Zend\Form',
+    'Zend\Db',
+    'Zend\I18n',
+    'Zend\Cache',
+    'ZendDeveloperTools',
     'Zend\Router',
     'Zend\Validator',
-    'Application',
+    'Application'
 ];
