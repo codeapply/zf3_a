@@ -24,7 +24,7 @@ return [
                             'route' => '/page/:page' ,   // /materials/page/:page
                             'constraints' => [ 'page' => '[0-9]+' ],
                             'defaults' => [
-                                'controller' => 'Materials\Controller\Index',
+                                'controller' => 'Materials\Controller\IndexController',
                                 'action' => 'index'
                             ]
                         ]
@@ -36,7 +36,7 @@ return [
               'options' => [
                 'route' => '/materials/add',
                 'defaults' => [
-                  'controller'  => 'Materials\Controller\Index',
+                  'controller'  => 'Materials\Controller\IndexController',
                   'action'      => 'add'
                 ]
               ]
@@ -49,7 +49,7 @@ return [
                   'itemId' => '[0-9]+'
                 ],
                 'defaults' => [
-                  'controller'  => 'Materials\Controller\Index',
+                  'controller'  => 'Materials\Controller\IndexController',
                   'action'      => 'edit'
                 ]
               ]
@@ -62,7 +62,7 @@ return [
                   'itemId' => '[0-9]+'
                 ],
                 'defaults' => [
-                  'controller'  => 'Materials\Controller\Index',
+                  'controller'  => 'Materials\Controller\IndexController',
                   'action'      => 'delete'
                 ]
               ]
@@ -75,7 +75,7 @@ return [
                   'itemSlug'      => '[a-zA-Z0-9-]+',
                 ],
                 'defaults' => [
-                  'controller'  => 'Materials\Controller\Index',
+                  'controller'  => 'Materials\Controller\IndexController',
                   'action'      => 'viewitem'
                 ]
               ]
