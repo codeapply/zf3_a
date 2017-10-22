@@ -18,10 +18,68 @@ return [
                 ],
                 'may_terminate' => true,
                 'child_routes' => [
-                    // You can place additional routes that match under the
-                    // route defined above here.
+                    'paged' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/page/:page' ,   // /materials/page/:page
+                            'constraints' => [ 'page' => '[0-9]+' ],
+                            'defaults' => [
+                                'controller' => 'Materials\Controller\Index',
+                                'action' => 'index'
+                            ]
+                        ]
+                    ]
                 ],
             ],
+            'materials_add' => [
+              'type' => 'Literal',
+              'options' => [
+                'route' => '/materials/add',
+                'defaults' => [
+                  'controller'  => 'Materials\Controller\Index',
+                  'action'      => 'add'
+                ]
+              ]
+            ],
+            'edit_item' => [
+              'type' => 'Segment',
+              'options' => [
+                'route' => '/materials/edit/:itemId',
+                'constraints' => [
+                  'itemId' => '[0-9]+'
+                ],
+                'defaults' => [
+                  'controller'  => 'Materials\Controller\Index',
+                  'action'      => 'edit'
+                ]
+              ]
+            ],
+            'delete_item' => [
+              'type' => 'Segment',
+              'options' => [
+                'route' => '/materials/delete/:itemId',
+                'constraints' => [
+                  'itemId' => '[0-9]+'
+                ],
+                'defaults' => [
+                  'controller'  => 'Materials\Controller\Index',
+                  'action'      => 'delete'
+                ]
+              ]
+            ],
+            'display_item' => [
+              'type' => 'Segment',
+              'options' => [
+                'route' => '/materials/:itemSlug',
+                'contraints' => [
+                  'itemSlug'      => '[a-zA-Z0-9-]+',
+                ],
+                'defaults' => [
+                  'controller'  => 'Materials\Controller\Index',
+                  'action'      => 'viewitem'
+                ]
+              ]
+            ]
         ],
     ],         
     'controllers' => [
@@ -31,7 +89,7 @@ return [
     ],
     'view_manager' => [
         'template_path_stack' => [
-            __DIR__ . '/../view',
+           'view' => __DIR__ . '/../view',
         ],
     ],
 ];
