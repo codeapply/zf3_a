@@ -4,20 +4,15 @@ namespace Materials;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
-    'controllers' => [
-        'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
-        ],
-    ],
     'router' => [
         'routes' => [
             'materials_home' => [
                 'type'    => 'Literal',
                 'options' => [
                     // Change this to something specific to your module
-                    'route'    => '/Materials',
+                    'route'    => '/materials',
                     'defaults' => [
-                        'controller'    => Controller\IndexController::class,
+                        'controller' => 'Materials\Controller\IndexController',
                         'action'        => 'index',
                     ],
                 ],
@@ -28,10 +23,15 @@ return [
                 ],
             ],
         ],
+    ],         
+    'controllers' => [
+        'factories' => [
+            Controller\IndexController::class => InvokableFactory::class,
+        ],
     ],
     'view_manager' => [
         'template_path_stack' => [
-            'Materials' => __DIR__ . '/../view',
+            __DIR__ . '/../view',
         ],
     ],
 ];
