@@ -1,18 +1,18 @@
 <?php
-namespace Materials;
+namespace Units;
 
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
         'routes' => [
-            'materials_home' => [
+            'units_home' => [
                 'type'    => 'Literal',
                 'options' => [
                     // Change this to something specific to your module
-                    'route'    => '/materials',
+                    'route'    => '/units',
                     'defaults' => [
-                        'controller' => 'Materials\Controller\IndexController',
+                        'controller' => 'Units\Controller\IndexController',
                         'action'        => 'index',
                     ],
                 ],
@@ -21,22 +21,22 @@ return [
                     'paged' => [
                         'type' => 'Segment',
                         'options' => [
-                            'route' => '/page/:page' ,   // /materials/page/:page
+                            'route' => '/page/:page' ,   // /units/page/:page
                             'constraints' => [ 'page' => '[0-9]+' ],
                             'defaults' => [
-                                'controller' => 'Materials\Controller\IndexController',
+                                'controller' => 'Units\Controller\IndexController',
                                 'action' => 'index'
                             ]
                         ]
                     ]
                 ],
             ],
-            'materials_add' => [
+            'units_add' => [
               'type' => 'Literal',
               'options' => [
-                'route' => '/materials/add',
+                'route' => '/units/add',
                 'defaults' => [
-                  'controller'  => 'Materials\Controller\IndexController',
+                  'controller'  => 'Units\Controller\IndexController',
                   'action'      => 'add'
                 ]
               ]
@@ -44,12 +44,12 @@ return [
             'edit_item' => [
               'type' => 'Segment',
               'options' => [
-                'route' => '/materials/edit/:itemId',
+                'route' => '/units/edit/:itemId',
                 'constraints' => [
                   'itemId' => '[0-9]+'
                 ],
                 'defaults' => [
-                  'controller'  => 'Materials\Controller\IndexController',
+                  'controller'  => 'Units\Controller\IndexController',
                   'action'      => 'edit'
                 ]
               ]
@@ -57,12 +57,12 @@ return [
             'delete_item' => [
               'type' => 'Segment',
               'options' => [
-                'route' => '/materials/delete/:itemId',
+                'route' => '/units/delete/:itemId',
                 'constraints' => [
                   'itemId' => '[0-9]+'
                 ],
                 'defaults' => [
-                  'controller'  => 'Materials\Controller\IndexController',
+                  'controller'  => 'Units\Controller\IndexController',
                   'action'      => 'delete'
                 ]
               ]
@@ -70,12 +70,12 @@ return [
             'display_item' => [
               'type' => 'Segment',
               'options' => [
-                'route' => '/materials/:itemName',
+                'route' => '/units/:itemName',
                 'contraints' => [
                   'itemSlug'      => '[a-zA-Z0-9-]+',
                 ],
                 'defaults' => [
-                  'controller'  => 'Materials\Controller\IndexController',
+                  'controller'  => 'Units\Controller\IndexController',
                   'action'      => 'viewitem'
                 ]
               ]
@@ -84,13 +84,13 @@ return [
     ],         
     'controllers' => [
         'factories' => [                                        
-            'Materials\Controller\IndexController' => 'Materials\Controller\IndexControllerFactory',  
-            'Materials\Controller\MaterialsItem' => 'Materials\Controller\MaterialsItemControllerFactory'
+            'Units\Controller\IndexController' => 'Units\Controller\IndexControllerFactory',  
+            'Units\Controller\UnitsItem' => 'Units\Controller\UnitsItemControllerFactory'
         ],
     ],
     'view_manager' => [
         'template_path_stack' => [
-           'materials' => __DIR__ . '/../view',
+           'units' => __DIR__ . '/../view',
         ],
     ],
 ];

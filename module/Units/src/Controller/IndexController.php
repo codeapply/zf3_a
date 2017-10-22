@@ -1,23 +1,23 @@
 <?php
 
-namespace Materials\Controller;
+namespace Units\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;   
 use Zend\View\Model\ViewModel;                         
-use Materials\Entity\Item;
+use Units\Entity\Item;
 
 class IndexController extends AbstractActionController
 {                                              
-    protected $materialsService;
+    protected $unitsService;
     
-    public function __construct($materialsService)
+    public function __construct($unitsService)
     {
-      $this->materialsService = $materialsService;
+      $this->unitsService = $unitsService;
     }
 
     public function indexAction()
     {                                           
-        $items = $this->materialsService->fetch(
+        $items = $this->unitsService->fetch(
             $this->params()->fromRoute('page')
         );
         

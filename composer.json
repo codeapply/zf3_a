@@ -36,13 +36,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Application\\": "module/Application/src/",
-            "Materials\\": "module/Materials/src/"
+            "Application\\": "module/Application/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "module/Application/test/"
+            "Application\\": "module/Application/src/"
         }
     },
     "extra": [],
