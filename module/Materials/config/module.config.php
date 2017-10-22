@@ -1,23 +1,23 @@
 <?php
-namespace ZendSkeletonModule;
+namespace Materials;
 
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'controllers' => [
-        'factories' => [
-            Controller\SkeletonController::class => InvokableFactory::class,
+        'factories' => [     
+            Controller\IndexController::class => InvokableFactory::class,
         ],
     ],
     'router' => [
         'routes' => [
-            'module-name-here' => [
+            'materials_home' => [
                 'type'    => 'Literal',
                 'options' => [
                     // Change this to something specific to your module
-                    'route'    => '/module-specific-root',
+                    'route'    => '/Materials',
                     'defaults' => [
-                        'controller'    => Controller\SkeletonController::class,
+                        'controller'    => Controller\IndexController::class,
                         'action'        => 'index',
                     ],
                 ],
