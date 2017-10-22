@@ -14,7 +14,8 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        return new ViewModel();    
-          'name' => 'Materials manager'
+        return new ViewModel([
+          'name' => 'Materials controler'
+        ]);
     }
 }
