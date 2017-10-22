@@ -20,7 +20,6 @@ return [
     'Zend\Mvc\Plugin\Prg',
     'Zend\Mvc\Plugin\FlashMessenger',
     'Zend\Mvc\I18n',
-    'Zend\Mvc\Console',
     'Zend\Log',
     'Zend\Form',
     'Zend\Db',
