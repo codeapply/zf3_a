@@ -28,5 +28,6 @@ return [
     'ZendDeveloperTools',
     'Zend\Router',
     'Zend\Validator',
-    'Application'
+    'Application',
+    'Materials'
 ];
