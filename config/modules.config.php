@@ -30,5 +30,6 @@ return [
     'Zend\Validator',
     'Application',
     'Materials',
-    'Units'
+    'Units',
+    'Groups'
 ];
