@@ -10,7 +10,7 @@
  *
  * This should be an array of module namespaces used in the application.
  */
-return [          
+return [  
     'Zend\InputFilter',
     'Zend\Filter',
     'Zend\Hydrator',
