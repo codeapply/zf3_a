@@ -1,11 +1,39 @@
 <h3>My Units</h3>
 <a class="btn btn-primary" href="<?php echo $this->url("units_add"); ?>">Add a new unit</a>
 
-<?php if (!empty($this->items)) : ?>
-    <?php foreach ($this->items as $item) : ?>
+<?php if (!empty($this->items)) : ?>             
         <hr />
         <div class="row">
+            <div class="col-md-3">       
+                <strong>
+                      Id
+                </strong>     
+            </div>                
+            <div class="col-md-3">    
+                <strong>
+                      Name
+                </strong>        
+            </div>                
+            <div class="col-md-3"> 
+                <strong>
+                      Shortname
+                </strong>  
+            </div>                
             <div class="col-md-3">
+                <strong>
+                      Actions     
+                </strong>  
+            </div>
+        </div>
+    <?php foreach ($this->items as $item) : ?>
+        <hr />
+        <div class="row">                      
+            <div class="col-md-3">
+                <strong>
+                      <?php echo $this->escapeHtml($item->getId()); ?>
+                </strong>        
+            </div>                
+            <div class="col-md-3 text-blue">
                 <strong>
                       <?php echo $this->escapeHtml($item->getName()); ?>
                 </strong>        
