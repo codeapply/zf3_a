@@ -1,19 +1,41 @@
 <h3>My Materials</h3>
 <a class="btn btn-primary" href="<?php echo $this->url("materials_add"); ?>">Add a new material</a>
 
-<?php if (!empty($this->items)) : ?>
-    <?php foreach ($this->items as $item) : ?>
+<?php if (!empty($this->items)) : ?>            
         <hr />
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3">       
                 <strong>
-                      <?php echo $this->escapeHtml($item->getName()); ?>
+                      Id
+                </strong>     
+            </div>                
+            <div class="col-md-3">    
+                <strong>
+                      Name
                 </strong>        
             </div>                
             <div class="col-md-3"> 
                 <strong>
-                      <?php echo $this->escapeHtml($item->getCode()); ?>
+                      Code
                 </strong>  
+            </div>                
+            <div class="col-md-3">
+                <strong>
+                      Actions     
+                </strong>  
+            </div>
+        </div>
+    <?php foreach ($this->items as $item) : ?>
+        <hr />
+        <div class="row">            
+            <div class="col-md-3">
+                      <?php echo $this->escapeHtml($item->getId()); ?>
+            </div>                
+            <div class="col-md-3 text-blue">
+                      <?php echo $this->escapeHtml($item->getName()); ?>
+            </div>                
+            <div class="col-md-3"> 
+                      <?php echo $this->escapeHtml($item->getCode()); ?>
             </div>                
             <div class="col-md-3">
                 <a class="btn btn-primary" href="<?php echo $this->url('materials_edit', ['itemId' => $item->getId()]); ?>">
