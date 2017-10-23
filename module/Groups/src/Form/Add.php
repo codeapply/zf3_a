@@ -9,10 +9,11 @@ use Zend\Hydrator\Aggregate\AggregateHydrator;
 
 class Add extends Form
 {
-  public function __construct()
-  {
-    parent::__construct('add');
 
+  public function __construct($groupsService)
+  {  
+    parent::__construct('add');   
+            
     $hydrator = new AggregateHydrator();
     $hydrator->add(new ItemHydrator());
     //$hydrator->add(new GroupHydrator());
@@ -26,11 +27,7 @@ class Add extends Form
     $parent_id = new Element\Select('parent_id');
     $parent_id->setLabel('Parent group');
     $parent_id->setAttribute('class', 'form-control');
-    $parent_id->setValueOptions([
-      1 => 'Something 1',
-      2 => 'Something 2',
-      3 => 'Something 3'
-    ]);
+    $parent_id->setValueOptions($this->getGroups($groupsService));                              
     
     $submit = new Element\Submit('submit');
     $submit->setValue('Add group');
@@ -40,4 +37,15 @@ class Add extends Form
     $this->add($parent_id);
     $this->add($submit);
   }
+  
+  public function getGroups($groupsService) 
+  {
+    $groupsArray = $groupsService->fetchAll();
+    foreach ($groupsArray as $k => $group) {
+      $group_id = $group->getId();
+      $options[$group_id] = $group->getName();
+    }
+    return $options;
+  }
+  
 }
