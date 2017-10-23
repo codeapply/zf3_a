@@ -60,6 +60,7 @@ class Add extends Form
   public function getUnitsOptions($materialsService) 
   {
     $unitsArray = $materialsService->fetchAllUnits();
+    $options[0] = "Undefinied";
     foreach ($unitsArray as $k => $item) {
       $item_id = $item->getId();
       $options[$item_id] = $item->getName();

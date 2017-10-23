@@ -8,7 +8,8 @@ use Materials\Entity\Hydrator\UnitsHydrator;
 use Zend\Hydrator\Aggregate\AggregateHydrator;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Materials\Repository\ItemRepository;
-use Zend\Db\Adapter\AdapterAwareTrait;
+use Zend\Db\Adapter\AdapterAwareTrait;      
+use Zend\Db\Sql\Expression;
 use Materials\Entity\Item;
 use Materials\Entity\Group;
 use Materials\Entity\Unit;
@@ -31,7 +32,7 @@ class ItemRepositoryImpl implements ItemRepository
           'name' => $item->getName(),
           'code' => $item->getCode(),
           'group_id' => $item->getGroup()->getId(),
-          'unit_id' => $item->getUnit()->getId()
+          'unit_id' => ($item->getUnit()->getId() == 0) ? new \Zend\Db\Sql\Expression('null')  : $item->getUnit()->getId()
         ])
         ->into('materials');
     
@@ -243,7 +244,7 @@ class ItemRepositoryImpl implements ItemRepository
         'name'       => $item->getName(),
         'code'        => $item->getCode(),
         'group_id'        => $item->getGroup()->getId(),
-        'unit_id'        => $item->getUnit()->getId(),
+        'unit_id' => ($item->getUnit()->getId() == 0) ? new \Zend\Db\Sql\Expression('null')  : $item->getUnit()->getId()
       ])->where([
         'id' => $item->getId()
       ]);
