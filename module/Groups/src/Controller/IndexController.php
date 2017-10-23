@@ -34,7 +34,8 @@ class IndexController extends AbstractActionController
     
   public function addAction()
   {    
-    $form = new Add($this->groupsService);
+    $form = new Add();
+    $form->setGroupOptions($this->groupsService->fetchAll());  
 
     $variables = [
       'form' => $form
@@ -65,7 +66,8 @@ class IndexController extends AbstractActionController
 
   public function editAction()
   {
-    $form = new Edit($this->groupsService);
+    $form = new Edit();
+    $form->setGroupOptions($this->groupsService->fetchAll());
     $variables = ['form' => $form];
 
     if ($this->request->isPost()) {    
