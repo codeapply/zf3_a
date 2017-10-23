@@ -32,7 +32,7 @@ class IndexController extends AbstractActionController
     
   public function addAction()
   {
-    $form = new Add();
+    $form = new Add($this->materialsService);
 
     $variables = [
       'form' => $form
@@ -65,7 +65,7 @@ class IndexController extends AbstractActionController
 
   public function editAction()
   {
-    $form = new Edit();
+    $form = new Edit($this->materialsService);
     $variables = ['form' => $form];
 
     if ($this->request->isPost()) {    

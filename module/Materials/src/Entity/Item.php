@@ -9,6 +9,10 @@ class Item
     protected $name;
 
     protected $code;
+    
+    protected $group;
+    
+    protected $unit;
 
 
     public function setId($id)
@@ -39,5 +43,25 @@ class Item
     public function setCode($code)
     {
       $this->code = $code;
+    }
+    
+    public function getGroup()
+    {
+      return $this->group;
+    }
+
+    public function setGroup($group)
+    {
+      $this->group = $group;
+    }
+
+    public function getUnit()
+    {
+      return $this->unit;
+    }
+
+    public function setUnit($unit)
+    {
+      $this->unit = $unit;
     }
 }

@@ -10,6 +10,10 @@ interface ItemRepository extends RepositoryInterface
   public function save(Item $item);
 
   public function fetchAll();
+  
+  public function fetchAllGroups();
+  
+  public function fetchAllUnits();
 
   public function fetch($page);
 

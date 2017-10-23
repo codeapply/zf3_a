@@ -3,11 +3,15 @@
 namespace Materials\Repository;
 
 use Materials\Entity\Hydrator\ItemHydrator;
+use Materials\Entity\Hydrator\GroupsHydrator;
+use Materials\Entity\Hydrator\UnitsHydrator;
 use Zend\Hydrator\Aggregate\AggregateHydrator;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Materials\Repository\ItemRepository;
 use Zend\Db\Adapter\AdapterAwareTrait;
 use Materials\Entity\Item;
+use Materials\Entity\Group;
+use Materials\Entity\Unit;
 
 class ItemRepositoryImpl implements ItemRepository
 {
@@ -25,9 +29,12 @@ class ItemRepositoryImpl implements ItemRepository
       $insert = $sql->insert()
         ->values([
           'name' => $item->getName(),
-          'code' => $item->getCode()
+          'code' => $item->getCode(),
+          'group_id' => $item->getGroup()->getId(),
+          'unit_id' => $item->getUnit()->getId()
         ])
         ->into('materials');
+    
      $statement = $sql->prepareStatementForSqlObject($insert);
      $statement->execute();
      $this->adapter->getDriver()
@@ -57,6 +64,70 @@ class ItemRepositoryImpl implements ItemRepository
       $hydrator = new AggregateHydrator();
       $hydrator->add(new ItemHydrator());
       $resultSet = new HydratingResultSet($hydrator, new Item());
+      $resultSet->initialize($result);
+
+      $items = [];
+      foreach($resultSet as $item) {
+          /**
+           * @var \Materials\Entity\Item $item
+           */
+          $items[] = $item;
+      }
+      return $items;
+  }
+  
+  
+  public function fetchAllGroups()
+  {
+      $sql = new \Zend\Db\Sql\Sql($this->adapter);
+      $select = $sql->select();
+      $select->columns([
+          'id',
+          'name',
+          'parent_id'
+      ])->from([
+        'p' => 'groups'
+      ]);
+    
+
+      $statement = $sql->prepareStatementForSqlObject($select);
+      $result = $statement->execute();
+
+      $hydrator = new AggregateHydrator();
+      $hydrator->add(new GroupsHydrator());
+      $resultSet = new HydratingResultSet($hydrator, new Group());
+      $resultSet->initialize($result);
+      
+      $items = [];
+      foreach($resultSet as $item) {      
+          /**
+           * @var \Materials\Entity\Item $item
+           */
+          $items[] = $item;
+      }
+      
+      return $items;
+  }
+  
+  
+  public function fetchAllUnits()
+  {
+      $sql = new \Zend\Db\Sql\Sql($this->adapter);
+      $select = $sql->select();
+      $select->columns([
+          'id',
+          'name',
+          'shortname'
+      ])->from([
+        'p' => 'units'
+      ]);
+
+      $statement = $sql->prepareStatementForSqlObject($select);
+      $result = $statement->execute();
+
+      $hydrator = new AggregateHydrator();
+      $hydrator->add(new UnitsHydrator());
+      $resultSet = new HydratingResultSet($hydrator, new Unit());
       $resultSet->initialize($result);
 
       $items = [];
@@ -158,10 +229,13 @@ class ItemRepositoryImpl implements ItemRepository
   public function update(Item $item)
   {
     $sql = new \Zend\Db\Sql\Sql($this->adapter);
+    
     $update = $sql->update('materials')
       ->set([
         'name'       => $item->getName(),
         'code'        => $item->getCode(),
+        'group_id'        => $item->getGroup()->getId(),
+        'unit_id'        => $item->getUnit()->getId(),
       ])->where([
         'id' => $item->getId()
       ]);

@@ -9,19 +9,17 @@ use Zend\Hydrator\Aggregate\AggregateHydrator;
 
 class Add extends Form
 {
-  public function __construct()
+  public function __construct($materialsService)
   {
     parent::__construct('add');
 
     $hydrator = new AggregateHydrator();
     $hydrator->add(new ItemHydrator());
-    //$hydrator->add(new GroupHydrator());
-    //$hydrator->add(new UnitHydrator());
 
     $this->setHydrator($hydrator);
 
     $name = new Element\Text('name');
-    $name->setLabel('name');
+    $name->setLabel('Name');
     $name->setAttribute('class', 'form-control');
 
     $code = new Element\Text('code');
@@ -31,20 +29,12 @@ class Add extends Form
     $group = new Element\Select('group_id');
     $group->setLabel('Group');
     $group->setAttribute('class', 'form-control');
-    $group->setValueOptions([
-      1 => 'Something 1',
-      2 => 'Something 2',
-      3 => 'Something 3'
-    ]);
-
+    $group->setValueOptions($this->getGroupsOptions($materialsService));  
+    
     $unit = new Element\Select('unit_id');
     $unit->setLabel('Unit');
     $unit->setAttribute('class', 'form-control');
-    $unit->setValueOptions([
-      1 => 'Something 1',
-      2 => 'Something 2',
-      3 => 'Something 3'
-    ]);
+    $unit->setValueOptions($this->getUnitsOptions($materialsService));  
 
     $submit = new Element\Submit('submit');
     $submit->setValue('Add material');
@@ -56,4 +46,25 @@ class Add extends Form
     $this->add($unit);
     $this->add($submit);
   }
+  
+  public function getGroupsOptions($materialsService) 
+  {
+    $groupsArray = $materialsService->fetchAllGroups();
+    foreach ($groupsArray as $k => $item) {
+      $item_id = $item->getId();
+      $options[$item_id] = $item->getName();
+    }
+    return $options;
+  }
+  
+  public function getUnitsOptions($materialsService) 
+  {
+    $unitsArray = $materialsService->fetchAllUnits();
+    foreach ($unitsArray as $k => $item) {
+      $item_id = $item->getId();
+      $options[$item_id] = $item->getName();
+    }
+    return $options;
+  }
+  
 }
