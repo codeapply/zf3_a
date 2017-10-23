@@ -14,16 +14,24 @@ Zend Framework 3 i18n module used by the application requires PHP-intl extension
 
 The repository contains zfapp.sql which is required to be imported into zfapp database for the applcation to run;
 
-To import using MySQL console tools:
+To import zfapp.sql using MySQL console tools:
 
 1. Go to /your/installation/path/to/mysql/bin/
 2. Execute command (replacing [user], [password], [database] with your real database credentials):
 mysql --user=[user] --password=[password] [database] < zfapp.sql
 3. Navigate to /zfapp/config/autoload/global.php for application database configuration and make changes if necessary
 
-## Installation using Composer
+## Pulling the repository using GIT
+1. Go to your Apache document root folder 
+2. Execute:
+git clone https://github.com/codeapply/zfapp.git
 
-To install Zend Framework 3 and dependencies:
+This will create zfapp folder and clone the repository into it.
+
+## Installation of Zend Framework dependencies using Composer
+
+Go to youd document root /zfapp/ 
+To install all Zend Framework dependencies and dump autoload configuration run in console:
 
 ```bash
 $ composer install
