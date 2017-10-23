@@ -167,7 +167,7 @@ class ItemRepositoryImpl implements ItemRepository
           );
           $paginator = new \Zend\Paginator\Paginator($paginatorAdapter);
           $paginator->setCurrentPageNumber($page);
-          $paginator->setItemCountPerPage(3);
+          $paginator->setItemCountPerPage(5);
 
           return $paginator;
   }
