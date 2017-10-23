@@ -21,12 +21,12 @@ To import zfapp.sql using MySQL console tools:
 mysql --user=[user] --password=[password] [database] < zfapp.sql
 3. Navigate to /zfapp/config/autoload/global.php for application database configuration and make changes if necessary
 
-## Pulling the repository using GIT
+## Cloning the repository using GIT
 1. Go to your Apache document root folder 
 2. Execute:
 git clone https://github.com/codeapply/zfapp.git
 
-This will create zfapp folder and clone the repository into it.
+This will create zfapp folder and clone the repository.
 
 ## Installation of Zend Framework dependencies using Composer
 
