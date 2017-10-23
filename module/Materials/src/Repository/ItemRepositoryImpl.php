@@ -53,7 +53,9 @@ class ItemRepositoryImpl implements ItemRepository
       $select->columns([
           'id',
           'name',
-          'code'
+          'code',
+          'group_id',
+          'unit_id'
       ])->from([
         'p' => 'materials'
       ]);
@@ -147,7 +149,9 @@ class ItemRepositoryImpl implements ItemRepository
       $select->columns([
           'id',
           'name',
-          'code'
+          'code',
+          'group_id',
+          'unit_id'
       ])->from([
         'p' => 'materials'
       ]);
@@ -178,7 +182,9 @@ class ItemRepositoryImpl implements ItemRepository
       $select->columns([
         'id',
         'name',
-        'code'
+        'code',
+        'group_id',
+        'unit_id'
       ])->from(
         ['p' => 'materials']
       )->where(
@@ -207,7 +213,9 @@ class ItemRepositoryImpl implements ItemRepository
     $select->columns([
       'id',
       'name',
-      'code'
+      'code',
+      'group_id',
+      'unit_id'
     ])->from(
       ['p' => 'materials']
     )->where(

@@ -18,7 +18,9 @@ class ItemHydrator implements HydratorInterface
       return [
         'id'        => $object->getId(),
         'name'     => $object->getName(),
-        'code'      => $object->getCode()
+        'code'      => $object->getCode(),
+        'group_id'      => ($object->getGroup()) ? $object->getGroup()->getId() : null,
+        'unit_id'      => ($object->getUnit()) ? $object->getUnit()->getId() : null
       ];
   }
 

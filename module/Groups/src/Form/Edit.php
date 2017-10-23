@@ -16,7 +16,6 @@ class Edit extends Form
     
     $hydrator = new AggregateHydrator();
     $hydrator->add(new ItemHydrator());
-    //$hydrator->add(new GroupHydrator());
     
     $this->setHydrator($hydrator);
     
@@ -29,7 +28,7 @@ class Edit extends Form
     $parent_id = new Element\Select('parent_id');
     $parent_id->setLabel('Parent group');
     $parent_id->setAttribute('class', 'form-control');
-    $parent_id->setValueOptions($this->getGroups($groupsService));      
+    $parent_id->setValueOptions($this->getGroups($groupsService));  
     
     $submit = new Element\Submit('submit');
     $submit->setValue('Update group');
