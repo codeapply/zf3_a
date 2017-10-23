@@ -33,7 +33,7 @@ class Add extends Form
     ]);
     
     $submit = new Element\Submit('submit');
-    $submit->setValue('Add material');
+    $submit->setValue('Add group');
     $submit->setAttribute('class', 'btn btn-primary');
 
     $this->add($name);

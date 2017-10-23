@@ -36,7 +36,7 @@ class Edit extends Form
     ]);
     
     $submit = new Element\Submit('submit');
-    $submit->setValue('Update material');
+    $submit->setValue('Update group');
     $submit->setAttribute('class', 'btn btn-primary');
 
     $this->add($id);
