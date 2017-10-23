@@ -28,6 +28,16 @@ class MaterialsServiceImpl implements MaterialsService
   {
     return $this->itemRepository->fetchAll();
   }
+  
+  public function fetchAllGroups()
+  {
+    return $this->itemRepository->fetchAllGroups();
+  }
+  
+  public function fetchAllUnits()
+  {
+    return $this->itemRepository->fetchAllUnits();
+  }
 
   public function fetch($page)
   {

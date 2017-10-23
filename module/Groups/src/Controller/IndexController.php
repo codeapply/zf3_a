@@ -65,8 +65,7 @@ class IndexController extends AbstractActionController
 
   public function editAction()
   {
-    $form = new Edit(
-    $this->groupsService);
+    $form = new Edit($this->groupsService);
     $variables = ['form' => $form];
 
     if ($this->request->isPost()) {    
