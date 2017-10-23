@@ -41,7 +41,7 @@ return [
                 ]
               ]
             ],
-            'edit_item' => [
+            'materials_edit' => [
               'type' => 'Segment',
               'options' => [
                 'route' => '/materials/edit/:itemId',
@@ -54,7 +54,7 @@ return [
                 ]
               ]
             ],
-            'delete_item' => [
+            'materials_delete' => [
               'type' => 'Segment',
               'options' => [
                 'route' => '/materials/delete/:itemId',
@@ -64,19 +64,6 @@ return [
                 'defaults' => [
                   'controller'  => 'Materials\Controller\IndexController',
                   'action'      => 'delete'
-                ]
-              ]
-            ],
-            'display_item' => [
-              'type' => 'Segment',
-              'options' => [
-                'route' => '/materials/:itemName',
-                'contraints' => [
-                  'itemSlug'      => '[a-zA-Z0-9-]+',
-                ],
-                'defaults' => [
-                  'controller'  => 'Materials\Controller\IndexController',
-                  'action'      => 'viewitem'
                 ]
               ]
             ]

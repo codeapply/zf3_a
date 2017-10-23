@@ -5,6 +5,8 @@ namespace Materials\Controller;
 use Zend\Mvc\Controller\AbstractActionController;   
 use Zend\View\Model\ViewModel;                         
 use Materials\Entity\Item;
+use Materials\Form\Add;
+use Materials\Form\Edit;
 
 class IndexController extends AbstractActionController
 {                                              
@@ -26,4 +28,5 @@ class IndexController extends AbstractActionController
         ];
         return new ViewModel($variables);
     }
+    
 }
