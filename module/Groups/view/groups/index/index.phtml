@@ -37,7 +37,7 @@
                       </strong>
             </div>                
             <div class="col-md-3"> 
-                      <?php echo ($item->getParentId()) ? $this->ref[$item->getParentId()]->getName() : ""; ?>
+                      <?php echo ($item->getParentId()) ? $this->ref[$item->getParentId()-1]->getName() : ""; ?>
             </div>                
             <div class="col-md-3">
                 <a class="btn btn-primary" href="<?php echo $this->url('groups_edit', ['itemId' => $item->getId()]); ?>">
