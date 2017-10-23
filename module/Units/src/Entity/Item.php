@@ -8,7 +8,7 @@ class Item
 
     protected $name;
 
-    protected $code;
+    protected $shortname;
 
 
     public function setId($id)
@@ -33,11 +33,11 @@ class Item
 
     public function getShortName()
     {
-      return $this->code;
+      return $this->shortname;
     }
 
-    public function setShortName($code)
+    public function setShortName($shortname)
     {
-      $this->code = $code;
+      $this->shortname = $shortname;
     }
 }

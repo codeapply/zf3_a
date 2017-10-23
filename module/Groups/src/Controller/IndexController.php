@@ -90,7 +90,6 @@ class IndexController extends AbstractActionController
           $form->get('parent_id')->setValue($item->getParentId());
           $form->get('id')->setValue($item->getId());
           //$form->get('group_id')->setValue($item->getGroup()->getId());
-          //$form->get('unit_id')->setValue($item->getUnit()->getId());
         }
       }
     return new ViewModel($variables);

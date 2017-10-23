@@ -1,8 +1,39 @@
-
-<strong>Module:</strong>        Units &raquo;
-<strong>Controller:</strong>    IndexController &raquo;
-<strong>Action:</strong>        index
-
+<h3>My Units</h3>
+<a class="btn btn-primary" href="<?php echo $this->url("units_add"); ?>">Add a new unit</a>
 
 <?php if (!empty($this->items)) : ?>
-    <?php foreach ($this->items as $item) : var_dump($item); endforeach; endif; ?>
+    <?php foreach ($this->items as $item) : ?>
+        <hr />
+        <div class="row">
+            <div class="col-md-3">
+                <strong>
+                      <?php echo $this->escapeHtml($item->getName()); ?>
+                </strong>        
+            </div>                
+            <div class="col-md-3"> 
+                <strong>
+                      <?php echo $this->escapeHtml($item->getShortName()); ?>
+                </strong>  
+            </div>                
+            <div class="col-md-3">
+                <a class="btn btn-primary" href="<?php echo $this->url('units_edit', ['itemId' => $item->getId()]); ?>">
+                  <i class="glyphicon glyphicon-pencil"></i> Edit
+                </a>
+                <a class="btn btn-danger" href="<?php echo $this->url('units_delete', ['itemId' => $item->getId()]) ;?>">
+                  <i class="glyphicon glyphicon-remove"></i> Delete
+                </a>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php else : ?>
+    <div>Nothing to display</div>
+<?php endif; ?>
+<hr />
+<?php
+    echo $this->paginationControl(
+      $this->items,
+      'Sliding',
+      'partial/pagination',
+      ['route' => 'units_home/paged']
+    );
+?>
