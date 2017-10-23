@@ -2,11 +2,9 @@
 
 ## Introduction
 
-This is the test application.
+Application requires Apache, PHP and MySQL to be installed on the system.
 
-Application requires Apache, PHP and MySQL installed. 
-
-Zend Framework 3 i18n module requires PHP-intl extension. To enable the extension:
+Zend Framework 3 i18n module used by the application requires PHP-intl extension. To enable the extension:
 
 1. Go to /your/php/installation/path/
 2. Edit php.ini
