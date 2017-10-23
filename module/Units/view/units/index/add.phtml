@@ -1,0 +1,16 @@
+<h3>New unit</h3>
+
+<?php
+  $form = $this->form;
+  $form->prepare();
+  echo $this->form()->openTag($form);
+?>
+<div class="form-unit">
+  <?php echo $this->formRow($form->get('name')); ?>
+</div>
+<div class="form-unit">
+  <?php echo $this->formRow($form->get('shortname')); ?>
+</div>
+
+<?php echo $this->formSubmit($form->get('submit')); ?>
+<?php echo $this->form()->closeTag(); ?>

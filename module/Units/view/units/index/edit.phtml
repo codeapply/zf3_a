@@ -1,0 +1,21 @@
+<?php
+$form = $this->form;
+$form->prepare();
+?>
+<h1>Edit unit</h1>
+                                     
+<?php
+  $form = $this->form;
+  $form->prepare();
+  echo $this->form()->openTag($form); 
+?>
+<div class="form-unit">
+  <?php echo $this->formRow($form->get('name')); ?>
+</div>
+<div class="form-unit">
+  <?php echo $this->formRow($form->get('shortname')); ?>
+</div>
+
+<?php echo $this->formRow($form->get('id')); ?>
+<?php echo $this->formSubmit($form->get('submit')); ?>
+<?php echo $this->form()->closeTag();  ?>

@@ -25,7 +25,7 @@ class ItemRepositoryImpl implements ItemRepository
       $insert = $sql->insert()
         ->values([
           'name' => $item->getName(),
-          'shortname' => $item->getShortname()
+          'shortname' => $item->getShortName()
         ])
         ->into('units');
      $statement = $sql->prepareStatementForSqlObject($insert);
@@ -161,7 +161,7 @@ class ItemRepositoryImpl implements ItemRepository
     $update = $sql->update('units')
       ->set([
         'name'       => $item->getName(),
-        'shortname'        => $item->getShortname(),
+        'shortname'        => $item->getShortName(),
       ])->where([
         'id' => $item->getId()
       ]);
