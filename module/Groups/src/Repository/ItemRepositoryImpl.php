@@ -25,7 +25,7 @@ class ItemRepositoryImpl implements ItemRepository
       $insert = $sql->insert()
         ->values([
           'name' => $item->getName(),
-          'parent_id' => $item->getCode()
+          'parent_id' => $item->getParentId()
         ])
         ->into('groups');
      $statement = $sql->prepareStatementForSqlObject($insert);
@@ -161,7 +161,7 @@ class ItemRepositoryImpl implements ItemRepository
     $update = $sql->update('groups')
       ->set([
         'name'       => $item->getName(),
-        'parent_id'        => $item->getCode(),
+        'parent_id'        => $item->getParentId(),
       ])->where([
         'id' => $item->getId()
       ]);

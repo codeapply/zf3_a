@@ -41,7 +41,7 @@ return [
                 ]
               ]
             ],
-            'edit_item' => [
+            'groups_edit' => [
               'type' => 'Segment',
               'options' => [
                 'route' => '/groups/edit/:itemId',
@@ -54,7 +54,7 @@ return [
                 ]
               ]
             ],
-            'delete_item' => [
+            'groups_delete' => [
               'type' => 'Segment',
               'options' => [
                 'route' => '/groups/delete/:itemId',
@@ -66,26 +66,12 @@ return [
                   'action'      => 'delete'
                 ]
               ]
-            ],
-            'display_item' => [
-              'type' => 'Segment',
-              'options' => [
-                'route' => '/groups/:itemName',
-                'contraints' => [
-                  'itemSlug'      => '[a-zA-Z0-9-]+',
-                ],
-                'defaults' => [
-                  'controller'  => 'Groups\Controller\IndexController',
-                  'action'      => 'viewitem'
-                ]
-              ]
             ]
         ],
     ],         
     'controllers' => [
         'factories' => [                                        
-            'Groups\Controller\IndexController' => 'Groups\Controller\IndexControllerFactory',  
-            'Groups\Controller\GroupsItem' => 'Groups\Controller\GroupsItemControllerFactory'
+            'Groups\Controller\IndexController' => 'Groups\Controller\IndexControllerFactory'
         ],
     ],
     'view_manager' => [

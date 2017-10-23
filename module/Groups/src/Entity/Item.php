@@ -31,12 +31,12 @@ class Item
       $this->name = $name;
     }
 
-    public function getCode()
+    public function getParentId()
     {
       return $this->parent_id;
     }
 
-    public function setCode($parent_id)
+    public function setParentId($parent_id)
     {
       $this->parent_id = $parent_id;
     }

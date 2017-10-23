@@ -16,7 +16,7 @@ class ItemHydrator implements HydratorInterface
       return [
         'id'        => $object->getId(),
         'name'     => $object->getName(),
-        'parent_id'      => $object->getCode()
+        'parent_id'      => $object->getParentId()
       ];
   }
 
@@ -28,7 +28,7 @@ class ItemHydrator implements HydratorInterface
 
     $object->setId(isset($data['id']) ? intval($data['id']) : null);
     $object->setName(isset($data['name']) ? $data['name'] : null);
-    $object->setCode(isset($data['parent_id']) ? $data['parent_id'] : null);
+    $object->setParentId(isset($data['parent_id']) ? $data['parent_id'] : null);
 
     return $object;
   }
