@@ -1,11 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Czas generowania: 23 Paź 2017, 01:31
--- Wersja serwera: 10.1.25-MariaDB
--- Wersja PHP: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,79 +11,32 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `zfapp`
 --
-CREATE DATABASE IF NOT EXISTS `zfapp` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `zfapp`;
+-- CREATE DATABASE IF NOT EXISTS `zfapp` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- USE `zfapp`;
 
--- --------------------------------------------------------
 
---
--- Struktura tabeli dla tabeli `groups`
---
-
-DROP TABLE IF EXISTS `groups`;
 CREATE TABLE `groups` (
   `id` int(11) NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Zrzut danych tabeli `groups`
---
-
-INSERT INTO `groups` (`id`, `parent_id`, `name`) VALUES
-(1, NULL, 'test_group'),
-(2, 1, 'test_child_group');
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `materials`
---
-
-DROP TABLE IF EXISTS `materials`;
 CREATE TABLE `materials` (
   `id` int(11) NOT NULL,
   `code` varchar(10) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `group_id` int(11) DEFAULT NULL,
+  `group_id` int(11) NOT NULL,
   `unit_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Zrzut danych tabeli `materials`
---
-
-INSERT INTO `materials` (`id`, `code`, `name`, `group_id`, `unit_id`) VALUES
-(1, 'test_code', 'test_material', 1, 1);
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `units`
---
-
-DROP TABLE IF EXISTS `units`;
 CREATE TABLE `units` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `shortname` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Zrzut danych tabeli `units`
---
 
-INSERT INTO `units` (`id`, `name`, `shortname`) VALUES
-(1, 'test_unit fullname\'', 'test_unitshort');
-
---
--- Indeksy dla zrzutów tabel
---
-
---
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
@@ -112,42 +57,28 @@ ALTER TABLE `materials`
 ALTER TABLE `units`
   ADD PRIMARY KEY (`id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT dla tabeli `groups`
---
-ALTER TABLE `groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT dla tabeli `materials`
---
-ALTER TABLE `materials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT dla tabeli `units`
---
-ALTER TABLE `units`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- Ograniczenia dla zrzutów tabel
---
-
---
--- Ograniczenia dla tabeli `groups`
---
 ALTER TABLE `groups`
   ADD CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `groups` (`id`) ON DELETE SET NULL;
 
---
--- Ograniczenia dla tabeli `materials`
---
 ALTER TABLE `materials`
-  ADD CONSTRAINT `materials_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `materials_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `materials_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `materials`
+  ADD CONSTRAINT `materials_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+
+                                                            
+INSERT INTO `units` (`id`, `name`, `shortname`) VALUES
+(1, 'test_unit fullname', 'test_unitshort');    
+
+INSERT INTO `groups` (`id`, `parent_id`, `name`) VALUES
+(1, NULL, 'test_group'),
+(2, 1, 'test_child_group');
+
+INSERT INTO `materials` (`id`, `code`, `name`, `group_id`, `unit_id`) VALUES
+(1, 'test_code', 'test_material', 1, 1);
+
 COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

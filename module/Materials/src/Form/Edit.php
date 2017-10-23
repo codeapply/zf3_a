@@ -26,7 +26,7 @@ class Edit extends Form
     $id = new Element\Hidden('id');
 
     $name = new Element\Text('name');
-    $name->setLabel('name');
+    $name->setLabel('Name');
     $name->setAttribute('class', 'form-control');
 
     $code = new Element\Text('code');

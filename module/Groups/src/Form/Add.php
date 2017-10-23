@@ -21,7 +21,7 @@ class Add extends Form
     $this->setHydrator($hydrator);
 
     $name = new Element\Text('name');
-    $name->setLabel('name');
+    $name->setLabel('Name');
     $name->setAttribute('class', 'form-control');
 
     $parent_id = new Element\Select('parent_id');
