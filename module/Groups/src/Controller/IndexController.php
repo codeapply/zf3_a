@@ -21,18 +21,20 @@ class IndexController extends AbstractActionController
     {                                           
         $items = $this->groupsService->fetch(
             $this->params()->fromRoute('page')
-        );
+        );     
+        $itemsRef = $this->groupsService->fetchAll();
         
         $variables = [
-          'items' => $items
+          'items' => $items,
+          'ref' => $itemsRef
         ];
         return new ViewModel($variables);
     }
     
     
   public function addAction()
-  {
-    $form = new Add();
+  {    
+    $form = new Add($this->groupsService);
 
     $variables = [
       'form' => $form
@@ -41,14 +43,12 @@ class IndexController extends AbstractActionController
     if ($this->request->isPost()) { 
         $groupsItem = new Item();
         $form->bind($groupsItem);
-
         
-        $data = $this->request->getPost(); 
+        $data = $this->request->getPost();  
         $form->setData($data);
 
         if ($form->isValid()) {
           $this->groupsService->save($groupsItem);
-
           return $this->redirect()->toRoute('groups_home');
         }
     }
@@ -65,7 +65,8 @@ class IndexController extends AbstractActionController
 
   public function editAction()
   {
-    $form = new Edit();
+    $form = new Edit(
+    $this->groupsService);
     $variables = ['form' => $form];
 
     if ($this->request->isPost()) {    

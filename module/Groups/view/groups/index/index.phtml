@@ -1,19 +1,43 @@
 <h3>My Groups</h3>
 <a class="btn btn-primary" href="<?php echo $this->url("groups_add"); ?>">Add a new group</a>
 
-<?php if (!empty($this->items)) : ?>
-    <?php foreach ($this->items as $item) : ?>
+<?php if (!empty($this->items)) : ?>        
         <hr />
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3">       
                 <strong>
-                      <?php echo $this->escapeHtml($item->getName()); ?>
+                      Id
+                </strong>     
+            </div>                
+            <div class="col-md-3">    
+                <strong>
+                      Name
                 </strong>        
             </div>                
             <div class="col-md-3"> 
                 <strong>
-                      <?php echo $this->escapeHtml($item->getParentId()); ?>
+                      Parent
                 </strong>  
+            </div>                
+            <div class="col-md-3">
+                <strong>
+                      Actions     
+                </strong>  
+            </div>
+        </div>
+    <?php foreach ($this->items as $item) : ?>
+        <hr />
+        <div class="row">       
+            <div class="col-md-3">
+                      <?php echo $this->escapeHtml($item->getId()); ?>
+            </div>                
+            <div class="col-md-3 text-blue">
+                      <strong>
+                      <?php echo $this->escapeHtml($item->getName()); ?>
+                      </strong>
+            </div>                
+            <div class="col-md-3"> 
+                      <?php echo ($item->getParentId()) ? $this->ref[$item->getParentId()]->getName() : ""; ?>
             </div>                
             <div class="col-md-3">
                 <a class="btn btn-primary" href="<?php echo $this->url('groups_edit', ['itemId' => $item->getId()]); ?>">
