@@ -17,9 +17,11 @@ The repository contains zfapp.sql which is required to be imported into zfapp da
 To import zfapp.sql using MySQL console tools:
 
 1. Go to /your/installation/path/to/mysql/bin/
-2. Execute command (replacing [user], [password], [database] with your real database credentials):
-mysql --user=[user] --password=[password] [database] < zfapp.sql
-3. Navigate to /zfapp/config/autoload/global.php for application database configuration and make changes if necessary
+2. Create database zfapp manually:
+CREATE DATABASE zfapp CHARACTER SET utf8 COLLATE utf8_general_ci;
+3. Execute command (replacing [user], [password], [database] with your real database credentials):
+mysql --user=[user] --password=[password] zfapp < zfapp.sql
+4. Navigate to /zfapp/config/autoload/global.php for application database configuration and make changes if necessary
 
 ## Cloning the repository using GIT
 1. Go to your Apache document root folder 
