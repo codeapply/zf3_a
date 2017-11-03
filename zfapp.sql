@@ -66,6 +66,19 @@ ALTER TABLE `materials`
   ADD CONSTRAINT `materials_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 
+ALTER TABLE `groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT dla tabeli `materials`
+--
+ALTER TABLE `materials`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT dla tabeli `units`
+--
+ALTER TABLE `units`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
                                                             
 INSERT INTO `units` (`id`, `name`, `shortname`) VALUES
 (1, 'test_unit fullname', 'test_unitshort');    
